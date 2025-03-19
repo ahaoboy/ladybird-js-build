@@ -42,18 +42,13 @@ curl -H "Authorization: token $GITHUB_TOKEN" \
 
 unzip -j "${ARTIFACT_NAME}"
 
-mkdir -p "$TARGET"
-
 ladybird="ladybird-js-$TARGET"
+mkdir -p "$ladybird"
+
 tar -xzf "${GZ_NAME}.tar.gz" -C "$ladybird"
 
 mv "$ladybird/bin/js" "$ladybird/js"
 rm -r "$ladybird/bin"
-
-echo "console.log(1+1)" > test.js
-
-"$ladybird/js" test.js
-
 
 cd "$ladybird"
 zip -r "../${ladybird}.zip" .
@@ -63,7 +58,6 @@ cd ..
 echo "Done! Output zip file: ${ladybird}.zip"
 
 ls -lh
-
 
 latest_tag="$RUN_ID_$ARTIFACT_ID"
 echo "tag=$latest_tag" >> $GITHUB_OUTPUT
