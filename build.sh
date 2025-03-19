@@ -59,5 +59,5 @@ echo "Done! Output zip file: ${ladybird}.zip"
 
 ls -lh
 
-latest_tag="$RUN_ID_$ARTIFACT_ID"
+latest_tag="${RUN_ID}_${ARTIFACT_ID}"
 echo "tag=$latest_tag" >> $GITHUB_OUTPUT
