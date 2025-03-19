@@ -4,8 +4,8 @@ if [ $# -ne 4 ]; then
 fi
 
 ARTIFACT_NAME="$1"
-GZ_NAME="$3"
-TARGET="$2"
+GZ_NAME="$2"
+TARGET="$3"
 GITHUB_TOKEN="$4"
 
 ARTIFACT_ID=$(curl -H "Authorization: token $GITHUB_TOKEN" -s "https://api.github.com/repos/ladybirdbrowser/ladybird/actions/artifacts" | \
@@ -44,17 +44,20 @@ unzip -j "${ARTIFACT_NAME}"
 
 mkdir -p "$TARGET"
 
-tar -xzf "${GZ_NAME}.tar.gz" -C "$TARGET"
+ladybird="ladybird-js-$TARGET"
+tar -xzf "${GZ_NAME}.tar.gz" -C "$ladybird"
 
-mv "$TARGET/bin/js" "$TARGET/js"
-rm -r "$TARGET/bin"
+mv "$ladybird/bin/js" "$ladybird/js"
+rm -r "$ladybird/bin"
 
-cd "$TARGET"
-zip -r "../${TARGET}.zip" .
+cd "$ladybird"
+zip -r "../${ladybird}.zip" .
 
 cd ..
 
-echo "Done! Output zip file: ${TARGET}.zip"
+echo "Done! Output zip file: ${ladybird}.zip"
+
+ls -lh
 
 latest_tag="$RUN_ID_$ARTIFACT_ID"
 echo "tag=$latest_tag" >> $GITHUB_OUTPUT
