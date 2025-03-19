@@ -38,3 +38,4 @@ jobs:
         with:
           tag: ${{ steps.build.outputs.tag }}
           artifacts: "*.zip"
+          allowUpdates: true
