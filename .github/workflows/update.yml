@@ -1,0 +1,40 @@
+name: update
+
+permissions:
+  contents: write
+
+on:
+  push:
+  schedule:
+    - cron:  '0 0 * * *'
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    name: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: install
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip jq
+
+      - name: build
+        id: build
+        run: |
+         bash ./build.sh ladybird-js-Linux-x86_64 ladybird-js-Linux-x86_64 x86_64-unknown-linux-gnu ${{ secrets.GITHUB_TOKEN }}
+         bash ./build.sh ladybird-js-macOS-universal2 ladybird-js-macOS-arm64 x86_64-apple-darwin ${{ secrets.GITHUB_TOKEN }}
+         bash ./build.sh ladybird-js-macOS-universal2 ladybird-js-macOS-arm64 aarch64-apple-darwin ${{ secrets.GITHUB_TOKEN }}
+
+      - name: release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.build.outputs.tag }}
+          artifacts: "*.zip"
