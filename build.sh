@@ -1,5 +1,5 @@
-if [ $# -ne 3 ]; then
-    echo "Usage: $0 ARTIFACT_NAME TARGET GITHUB_TOKEN" >&2
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 ARTIFACT_NAME GZ_NAME TARGET GITHUB_TOKEN" >&2
     exit 1
 fi
 
