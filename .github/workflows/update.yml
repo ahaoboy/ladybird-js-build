@@ -30,7 +30,7 @@ jobs:
         id: build
         run: |
          bash ./build.sh ladybird-js-Linux-x86_64 ladybird-js-Linux-x86_64 x86_64-unknown-linux-gnu ${{ secrets.GITHUB_TOKEN }}
-         bash ./build.sh ladybird-js-macOS-universal2 ladybird-js-macOS-arm64 aarch64-apple-darwin ${{ secrets.GITHUB_TOKEN }}
+         bash ./build.sh ladybird-js-macOS-arm64 ladybird-js-macOS-arm64 aarch64-apple-darwin ${{ secrets.GITHUB_TOKEN }}
 
          #  bash ./build.sh ladybird-js-macOS-universal2 ladybird-js-macOS-arm64 x86_64-apple-darwin ${{ secrets.GITHUB_TOKEN }}
 
