@@ -37,7 +37,8 @@ jobs:
       - name: release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.build.outputs.tag }}
+          # tag: ${{ steps.build.outputs.tag }}
+          tag: nightly
           artifacts: "*.zip"
           allowUpdates: true
   test-release:
