@@ -45,20 +45,21 @@ unzip -j "${ARTIFACT_NAME}"
 ladybird="ladybird-js-$TARGET"
 mkdir -p "$ladybird"
 
-tar -xzf "${GZ_NAME}.tar.gz" -C "$ladybird"
+# tar -xzf "${GZ_NAME}.tar.gz" -C "$ladybird"
+mv "${GZ_NAME}.tar.gz" "${ladybird}.tar.gz"
 
-mv "$ladybird/bin/js" "$ladybird/js"
-rm -r "$ladybird/bin"
-rm -r "$ladybird/COMMIT"
+# mv "$ladybird/bin/js" "$ladybird/js"
+# rm -r "$ladybird/bin"
+# rm -r "$ladybird/COMMIT"
 
-cd "$ladybird"
-zip -r "../${ladybird}.zip" .
+# cd "$ladybird"
+# zip -r "../${ladybird}.zip" .
 
-cd ..
+# cd ..
 
-echo "Done! Output zip file: ${ladybird}.zip"
+# echo "Done! Output zip file: ${ladybird}.zip"
 
-ls -lh
+# ls -lh
 
-latest_tag="${RUN_ID}_${ARTIFACT_ID}"
-echo "tag=$latest_tag" >> $GITHUB_OUTPUT
+# latest_tag="${RUN_ID}_${ARTIFACT_ID}"
+# echo "tag=$latest_tag" >> $GITHUB_OUTPUT

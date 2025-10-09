@@ -39,7 +39,7 @@ jobs:
         with:
           # tag: ${{ steps.build.outputs.tag }}
           tag: nightly
-          artifacts: "*.zip"
+          artifacts: "*.tar.gz"
           allowUpdates: true
   test-release:
     needs: ["build"]
