@@ -49,6 +49,7 @@ tar -xzf "${GZ_NAME}.tar.gz" -C "$ladybird"
 
 mv "$ladybird/bin/js" "$ladybird/js"
 rm -r "$ladybird/bin"
+rm -r "$ladybird/COMMIT"
 
 cd "$ladybird"
 zip -r "../${ladybird}.zip" .
