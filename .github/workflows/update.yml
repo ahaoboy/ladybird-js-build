@@ -40,26 +40,26 @@ jobs:
           tag: nightly
           artifacts: "*.tar.gz"
           allowUpdates: true
-  # test-release:
-  #   needs: ["build"]
-  #   strategy:
-  #     matrix:
-  #       os: [
-  #         ubuntu-latest,
-  #         macos-latest,
-  #         # macos-13
-  #       ]
-  #   runs-on: ${{ matrix.os }}
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: wait
-  #       run: |
-  #         sleep 300
-  #     - uses: easy-install/easy-setup@v1
-  #       with:
-  #         url: https://github.com/ahaoboy/ladybird-js-build
-  #     - name: test
-  #       run: |
-  #         which js
-  #         echo "console.log(1+1)" >> ./test.js
-  #         js ./test.js
+  test-release:
+    needs: ["build"]
+    strategy:
+      matrix:
+        os: [
+          ubuntu-26.04,
+          macos-latest,
+          # macos-13
+        ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: wait
+        run: |
+          sleep 300
+      - uses: easy-install/easy-setup@v1
+        with:
+          url: https://github.com/ahaoboy/ladybird-js-build
+      - name: test
+        run: |
+          which js
+          echo "console.log(1+1)" >> ./test.js
+          js ./test.js
